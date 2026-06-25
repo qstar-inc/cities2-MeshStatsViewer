@@ -1,0 +1,11 @@
+.RowFlex {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.JustifySpaceAround {
+  justify-content: space-around !important;
+}

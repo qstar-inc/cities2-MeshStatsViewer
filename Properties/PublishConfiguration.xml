@@ -1,0 +1,28 @@
+<Publish>
+  <ModId Value="148970" />
+  <DisplayName Value="Mesh Stats Viewer" />
+  <ShortDescription Value="View information about asset meshes in-game" />
+  <LongDescription># Mesh Stats Viewer
+View information about asset meshes in-game
+
+Ever wanted to check whether a 3D asset is poorly optimized, missing LODs, or just standing there making your game cry? With this mod, you can do at least two of those things.
+
+Originally created at the request of MayorCheeks.</LongDescription>
+  <Thumbnail Value="Properties/Thumbnail.png" />
+  <Screenshot Value="Properties/Screenshot01.png" />
+  <Screenshot Value="Properties/Screenshot02.png" />
+  <Screenshot Value="Properties/Screenshot03.png" />
+  <Screenshot Value="Properties/Screenshot04.png" />
+  <Tag Value="Code Mod" />
+  <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/starq-mods-assets-projects-megathread.1930389/" />
+  <ModVersion Value="0.9.0" />
+  <GameVersion Value="1.6.0*" />
+  <Dependency Id="" />
+  <RequiredDLC Value="" />
+  <ChangeLog>- Initial release</ChangeLog>
+  <ExternalLink Type="github" Url="https://github.com/qstar-inc/cities2-MeshStatsViewer" />
+  <ExternalLink Type="discord" Url="https://discord.gg/U2PSjUzUuF" />
+  <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/starq" />
+  <ExternalLink Type="crowdin" Url="https://crowdin.com/project/starq-cities2" />
+  <AccessLevel Value="Unlisted" />
+</Publish>
