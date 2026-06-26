@@ -1,5 +1,5 @@
 ﻿using Colossal.UI.Binding;
-using MeshStatsViewer.Variables;
+using MeshStatsViewer.Types;
 
 namespace MeshStatsViewer.Extensions
 {
@@ -41,35 +41,51 @@ namespace MeshStatsViewer.Extensions
             writer.PropertyName(nameof(value.Name));
             writer.Write(value.Name);
 
-            writer.PropertyName(nameof(value.SurfaceArea));
-            writer.Write(value.SurfaceArea);
-
-            writer.PropertyName(nameof(value.IndexCount));
-            writer.Write(value.IndexCount);
+            writer.PropertyName(nameof(value.TrisCount));
+            writer.Write(value.TrisCount);
 
             writer.PropertyName(nameof(value.VertexCount));
             writer.Write(value.VertexCount);
 
-            writer.PropertyName(nameof(value.TrisCount));
-            writer.Write(value.TrisCount);
+            writer.PropertyName(nameof(value.TrisReduction));
+            writer.Write(value.TrisReduction);
 
             writer.PropertyName(nameof(value.TrisDensity));
             writer.Write(value.TrisDensity);
 
-            writer.PropertyName(nameof(value.VertexDensity));
-            writer.Write(value.VertexDensity);
-
-            writer.PropertyName(nameof(value.Width));
-            writer.Write(value.Width);
-
-            writer.PropertyName(nameof(value.Height));
-            writer.Write(value.Height);
-
-            writer.PropertyName(nameof(value.Depth));
-            writer.Write(value.Depth);
+            writer.PropertyName(nameof(value.SurfaceArea));
+            writer.Write(value.SurfaceArea);
 
             writer.PropertyName(nameof(value.Volume));
             writer.Write(value.Volume);
+
+            writer.TypeEnd();
+        }
+    }
+
+    public static class OptionsWriter
+    {
+        public static void Write(this IJsonWriter writer, Options value)
+        {
+            writer.TypeBegin(value.GetType().FullName);
+
+            writer.PropertyName(nameof(value.ViewChooser));
+            writer.Write((int)value.ViewChooser);
+
+            writer.PropertyName(nameof(value.LOD1Threshold));
+            writer.Write(value.LOD1Threshold);
+
+            writer.PropertyName(nameof(value.LOD2Threshold));
+            writer.Write(value.LOD2Threshold);
+
+            writer.PropertyName(nameof(value.TrisThreshold));
+            writer.Write(value.TrisThreshold);
+
+            writer.PropertyName(nameof(value.VolumeThreshold));
+            writer.Write(value.VolumeThreshold);
+
+            writer.PropertyName(nameof(value.CheekyMode));
+            writer.Write(value.CheekyMode);
 
             writer.TypeEnd();
         }

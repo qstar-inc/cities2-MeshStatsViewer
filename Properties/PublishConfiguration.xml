@@ -15,11 +15,13 @@ Originally created at the request of MayorCheeks.</LongDescription>
   <Screenshot Value="Properties/Screenshot04.png" />
   <Tag Value="Code Mod" />
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/starq-mods-assets-projects-megathread.1930389/" />
-  <ModVersion Value="0.9.0" />
+  <ModVersion Value="0.9.1" />
   <GameVersion Value="1.6.0*" />
   <Dependency Id="" />
   <RequiredDLC Value="" />
-  <ChangeLog>- Initial release</ChangeLog>
+  <ChangeLog>- Added tabular view
+- Added Cheeky Mode
+- Fix options strings</ChangeLog>
   <ExternalLink Type="github" Url="https://github.com/qstar-inc/cities2-MeshStatsViewer" />
   <ExternalLink Type="discord" Url="https://discord.gg/U2PSjUzUuF" />
   <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/starq" />

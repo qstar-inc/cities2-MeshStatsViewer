@@ -5,7 +5,7 @@ using Colossal.UI.Binding;
 using Game;
 using Game.Prefabs;
 using MeshStatsViewer.Extensions;
-using MeshStatsViewer.Variables;
+using MeshStatsViewer.Types;
 using StarQ.Shared.Extensions;
 using StarQ.Shared.Extensions.UI;
 using Unity.Entities;
@@ -34,8 +34,6 @@ namespace MeshStatsViewer.Systems
         public static MeshStats[] meshStatsInfo = new MeshStats[0];
         public static Dictionary<string, List<MeshStats>> meshStatDict = new();
 
-        //private ValueBindingHelper<MeshStats[]> MeshStats;
-
 #nullable enable
 
         protected override void OnCreate()
@@ -44,9 +42,6 @@ namespace MeshStatsViewer.Systems
             m_InfoUISystem.AddMiddleSection(this);
 
             prefabSystem = WorldHelper.PrefabSystem;
-
-            //MeshStats = CreateBinding("GetMeshStats", new MeshStats[0]);
-
             Enabled = false;
         }
 
@@ -67,28 +62,23 @@ namespace MeshStatsViewer.Systems
             writer.PropertyName("meshStatsInfo");
             MeshStatsWriter.Write(writer, meshStatsInfo);
 
-            writer.PropertyName("detailed");
-            writer.Write(Mod.m_Setting.DetailedView);
-
-            writer.PropertyName("lod1thres");
-            writer.Write(Mod.m_Setting.LOD1Threshold);
-
-            writer.PropertyName("lod2thres");
-            writer.Write(Mod.m_Setting.LOD2Threshold);
-
-            writer.PropertyName("tristhres");
-            writer.Write(Mod.m_Setting.TrisThreshold);
-
-            writer.PropertyName("volumethres");
-            writer.Write(Mod.m_Setting.VolumeThreshold);
-
-            writer.PropertyName("tristhres");
-            writer.Write(Mod.m_Setting.TrisThreshold);
+            writer.PropertyName("options");
+            OptionsWriter.Write(
+                writer,
+                new Options()
+                {
+                    ViewChooser = Mod.m_Setting.ViewChooser,
+                    LOD1Threshold = Mod.m_Setting.LOD1Threshold,
+                    LOD2Threshold = Mod.m_Setting.LOD2Threshold,
+                    TrisThreshold = Mod.m_Setting.TrisThreshold,
+                    VolumeThreshold = Mod.m_Setting.VolumeThreshold,
+                    CheekyMode = Mod.m_Setting.CheekyMode,
+                }
+            );
         }
 
         protected override void Reset()
         {
-            //bldgBrandInfo = new();
             prefabName = string.Empty;
             hasMesh = false;
         }
@@ -123,24 +113,10 @@ namespace MeshStatsViewer.Systems
         protected override void OnProcess()
         {
             CheckMesh();
-            List<string> text = new();
-            foreach (var item in meshStatsInfo)
-            {
-                text.Add($"{item.LODCount} lods found on the RenderPrefab");
-                foreach (var item2 in item.MeshStatData)
-                {
-                    text.Add(
-                        $"{item2.SurfaceArea} SurfaceArea, {item2.VertexCount} VertexCount, {item2.IndexCount} IndexCount"
-                    );
-                }
-            }
-            if (text.Count > 0)
-                LogHelper.SendLog(string.Join("\n", text));
         }
 
         public void CheckMesh()
         {
-            LogHelper.SendLog($"EnvPath.kGameDataPath: {EnvPath.kGameDataPath}");
             if (!hasMesh)
                 return;
             if (
@@ -168,6 +144,7 @@ namespace MeshStatsViewer.Systems
                 Entity currentMesh = subMesh[i].m_SubMesh;
                 MeshStats b = new() { };
                 List<MeshStatData> b1 = new();
+                int prevTris = 0;
 
                 if (
                     prefabSystem.TryGetPrefab(currentMesh, out PrefabBase meshPrefab)
@@ -177,6 +154,7 @@ namespace MeshStatsViewer.Systems
                     RenderPrefab rp = meshPrefab_rp;
 
                     int trisCount = rp.indexCount / 3;
+                    prevTris = trisCount;
                     float width = math.abs(rp.bounds.min.x - rp.bounds.max.x);
                     float height = math.abs(rp.bounds.min.y - rp.bounds.max.y);
                     float depth = math.abs(rp.bounds.min.z - rp.bounds.max.z);
@@ -185,14 +163,12 @@ namespace MeshStatsViewer.Systems
                         {
                             Name = rp.name,
                             SurfaceArea = rp.surfaceArea,
-                            IndexCount = rp.indexCount,
+                            //IndexCount = rp.indexCount,
                             VertexCount = rp.vertexCount,
                             TrisCount = trisCount,
                             TrisDensity = trisCount / rp.surfaceArea,
-                            VertexDensity = rp.vertexCount / rp.surfaceArea,
-                            Width = width,
-                            Height = height,
-                            Depth = depth,
+                            TrisReduction = -1,
+                            //VertexDensity = rp.vertexCount / rp.surfaceArea,
                             Volume = width * height * depth,
                         }
                     );
@@ -220,6 +196,8 @@ namespace MeshStatsViewer.Systems
                             RenderPrefab rp = lodPrefab_rp;
 
                             int trisCount = rp.indexCount / 3;
+                            float reduction = 100 * (prevTris - trisCount) / prevTris;
+                            prevTris = trisCount;
                             float width = math.abs(rp.bounds.min.x - rp.bounds.max.x);
                             float height = math.abs(rp.bounds.min.y - rp.bounds.max.y);
                             float depth = math.abs(rp.bounds.min.z - rp.bounds.max.z);
@@ -228,14 +206,12 @@ namespace MeshStatsViewer.Systems
                                 {
                                     Name = rp.name,
                                     SurfaceArea = rp.surfaceArea,
-                                    IndexCount = rp.indexCount,
+                                    //IndexCount = rp.indexCount,
                                     VertexCount = rp.vertexCount,
                                     TrisCount = trisCount,
+                                    TrisReduction = reduction,
                                     TrisDensity = trisCount / rp.surfaceArea,
-                                    VertexDensity = rp.vertexCount / rp.surfaceArea,
-                                    Width = width,
-                                    Height = height,
-                                    Depth = depth,
+                                    //VertexDensity = rp.vertexCount / rp.surfaceArea,
                                     Volume = width * height * depth,
                                 }
                             );

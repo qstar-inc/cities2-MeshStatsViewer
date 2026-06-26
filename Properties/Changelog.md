@@ -1,1 +1,3 @@
-- Initial release
+- Added tabular view
+- Added Cheeky Mode
+- Fix options strings

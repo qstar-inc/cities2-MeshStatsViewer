@@ -5,14 +5,10 @@ export interface MeshStats {
 
 export interface MeshStatData {
   Name: string;
-  SurfaceArea: number;
-  IndexCount: number;
-  VertexCount: number;
   TrisCount: number;
+  VertexCount: number;
+  TrisReduction: number;
   TrisDensity: number;
-  VertexDensity: number;
-  Width: number;
-  Height: number;
-  Depth: number;
+  SurfaceArea: number;
   Volume: number;
 }

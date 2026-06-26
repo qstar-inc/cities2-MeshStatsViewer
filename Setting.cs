@@ -3,6 +3,7 @@ using Colossal.Json;
 using Game.Modding;
 using Game.Settings;
 using Game.UI;
+using MeshStatsViewer.Types;
 using StarQ.Shared.Extensions;
 
 namespace MeshStatsViewer
@@ -24,15 +25,16 @@ namespace MeshStatsViewer
 
         public override void SetDefaults()
         {
-            DetailedView = true;
-            LOD1Threshold = 50;
-            LOD2Threshold = 80;
-            TrisThreshold = 5000;
-            VolumeThreshold = 1;
+            ViewChooser = OptionsDefaults.DefaultViewChooser;
+            LOD1Threshold = OptionsDefaults.DefaultLOD1Threshold;
+            LOD2Threshold = OptionsDefaults.DefaultLOD2Threshold;
+            TrisThreshold = OptionsDefaults.DefaultTrisThreshold;
+            VolumeThreshold = OptionsDefaults.DefaultVolumeThreshold;
+            CheekyMode = OptionsDefaults.DefaultCheekyMode;
         }
 
         [SettingsUISection(GeneralTab, GeneralGroup)]
-        public bool DetailedView { get; set; } = true;
+        public View ViewChooser { get; set; } = View.Tabular;
 
         [SettingsUISlider(max = 60, min = 30, step = 10, unit = Unit.kPercentage)]
         [SettingsUISection(GeneralTab, GeneralGroup)]
@@ -49,6 +51,9 @@ namespace MeshStatsViewer
         [SettingsUISlider(max = 100, min = 0, step = 1, unit = Unit.kVolume)]
         [SettingsUISection(GeneralTab, GeneralGroup)]
         public int VolumeThreshold { get; set; } = 1;
+
+        [SettingsUISection(GeneralTab, GeneralGroup)]
+        public bool CheekyMode { get; set; } = false;
 
         [SettingsUISection(AboutTab, InfoGroup)]
         public string NameText => Mod.Name;
