@@ -1,3 +1,4 @@
-- Added tabular view
-- Added Cheeky Mode
-- Fix options strings
+- Added "Enable Vanilla" option (don't show data for vanilla items).
+- Added few new warnings.
+- Warnings are now shown above the data.
+- Added CheekySerious emoji for Cheeky Mode.

@@ -12,16 +12,18 @@ namespace MeshStatsViewer.Types
 
     public static class OptionsDefaults
     {
+        public static bool DefaultEnableVanilla = false;
         public static View DefaultViewChooser = View.Tabular;
         public static int DefaultLOD1Threshold = 50;
         public static int DefaultLOD2Threshold = 80;
         public static int DefaultTrisThreshold = 5000;
         public static int DefaultVolumeThreshold = 1;
-        public static bool DefaultCheekyMode = false;
+        public static bool DefaultCheekyMode = true;
     }
 
     public class Options
     {
+        public bool EnableVanilla { get; set; } = OptionsDefaults.DefaultEnableVanilla;
         public View ViewChooser { get; set; } = OptionsDefaults.DefaultViewChooser;
         public int LOD1Threshold { get; set; } = OptionsDefaults.DefaultLOD1Threshold;
         public int LOD2Threshold { get; set; } = OptionsDefaults.DefaultLOD2Threshold;

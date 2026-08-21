@@ -88,7 +88,9 @@ namespace MeshStatsViewer.Systems
             Reset();
             if (!EntityManager.TryGetComponent(selectedEntity, out PrefabRef _))
                 return false;
-            if (!prefabSystem.TryGetPrefab(selectedPrefab, out PrefabBase _))
+            if (!prefabSystem.TryGetPrefab(selectedPrefab, out PrefabBase pb) || pb == null)
+                return false;
+            if (pb.isBuiltin && !Mod.m_Setting.EnableVanilla)
                 return false;
 
             if (

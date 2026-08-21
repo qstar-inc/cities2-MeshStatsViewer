@@ -1,30 +1,17 @@
-﻿using Colossal.IO.AssetDatabase;
-using Colossal.Json;
-using Game.Modding;
+﻿using Game.Modding;
 using Game.Settings;
 using Game.UI;
 using MeshStatsViewer.Types;
-using StarQ.Shared.Extensions;
+using StarQ.Shared.Generators;
 
 namespace MeshStatsViewer
 {
-    [FileLocation("ModsSettings\\StarQ\\" + nameof(MeshStatsViewer))]
-    [SettingsUITabOrder(GeneralTab, AboutTab, LogTab)]
-    public class Setting : ModSetting
+    [GenerateSettingCommonAttribute]
+    public partial class Setting : ModSetting
     {
-        public Setting(IMod mod)
-            : base(mod) => SetDefaults();
-
-        public const string GeneralTab = "GeneralTab";
-        public const string GeneralGroup = "GeneralGroup";
-
-        public const string AboutTab = "AboutTab";
-        public const string InfoGroup = "InfoGroup";
-
-        public const string LogTab = "LogTab";
-
         public override void SetDefaults()
         {
+            EnableVanilla = OptionsDefaults.DefaultEnableVanilla;
             ViewChooser = OptionsDefaults.DefaultViewChooser;
             LOD1Threshold = OptionsDefaults.DefaultLOD1Threshold;
             LOD2Threshold = OptionsDefaults.DefaultLOD2Threshold;
@@ -32,6 +19,9 @@ namespace MeshStatsViewer
             VolumeThreshold = OptionsDefaults.DefaultVolumeThreshold;
             CheekyMode = OptionsDefaults.DefaultCheekyMode;
         }
+
+        [SettingsUISection(GeneralTab, GeneralGroup)]
+        public bool EnableVanilla { get; set; } = false;
 
         [SettingsUISection(GeneralTab, GeneralGroup)]
         public View ViewChooser { get; set; } = View.Tabular;
@@ -54,50 +44,5 @@ namespace MeshStatsViewer
 
         [SettingsUISection(GeneralTab, GeneralGroup)]
         public bool CheekyMode { get; set; } = false;
-
-        [SettingsUISection(AboutTab, InfoGroup)]
-        public string NameText => Mod.Name;
-
-        [SettingsUISection(AboutTab, InfoGroup)]
-        public string VersionText => VariableHelper.AddDevSuffix(Mod.Version);
-
-        [SettingsUISection(AboutTab, InfoGroup)]
-        public string AuthorText => VariableHelper.StarQ;
-
-        [SettingsUIButton]
-        [SettingsUIButtonGroup("Social")]
-        [SettingsUISection(AboutTab, InfoGroup)]
-        public bool BMaCLink
-        {
-            set => VariableHelper.OpenBMAC();
-        }
-
-        //[SettingsUIButton]
-        //[SettingsUIButtonGroup("Social")]
-        //[SettingsUISection(AboutTab, InfoGroup)]
-        //public bool Discord
-        //{
-        //    set => VariableHelper.OpenDiscord(XXXX);
-        //}
-
-        [SettingsUIMultilineText]
-        [SettingsUIDisplayName(typeof(LogHelper), nameof(LogHelper.LogText))]
-        [SettingsUISection(LogTab, "")]
-        public string LogText => string.Empty;
-
-        [Exclude]
-        [SettingsUIHidden]
-        public bool IsLogMissing
-        {
-            get => VariableHelper.CheckLog(Mod.Id);
-        }
-
-        [SettingsUIButton]
-        [SettingsUIDisableByCondition(typeof(Setting), nameof(IsLogMissing))]
-        [SettingsUISection(LogTab, "")]
-        public bool OpenLog
-        {
-            set => VariableHelper.OpenLog(Mod.Id);
-        }
     }
 }
