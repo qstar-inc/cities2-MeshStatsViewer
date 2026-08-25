@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Library/ilpp.pid
 /Resources/Localization/MeshStatsViewer_en-US.loc
+/.loc

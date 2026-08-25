@@ -20,7 +20,6 @@ import { errorIcon, warningIcon } from "shared/icons";
 import { infoRowModule } from "shared/style";
 import { SIP_MSV_NAME } from "index";
 import { Options, View } from "types/Options";
-import { LocalizedNumber } from "shared/vanilla-type-fix";
 
 interface SIP_MSV extends SelectedInfoSectionBase {
   prefabName: string;
@@ -63,8 +62,9 @@ let LODHeavier: string = "";
 let LODIdentical: string = "";
 let AllLODsIdentical: string = "";
 
-let warningIconToUse: string = "";
-let errorIconToUse: string = "";
+const cheekyEyes: string = "assetdb://global/ef193229fbf684ef095c2b867dcdd100";
+const cheekySerious: string =
+  "assetdb://global/0c68b3c93afc322058378d412fb1d907";
 
 const BuildTabular = (props: DataProps): any => {
   const fields: (keyof MeshStatData)[] = [
@@ -109,10 +109,16 @@ const BuildTabular = (props: DataProps): any => {
           center={
             <>
               <Icon
-                src={errorIconToUse}
+                src={errorIcon}
                 className={`${infoRowModule.icon} ${infoRowModule.link}`}
               />
               {AllLODsIdentical}
+              {props.options.CheekyMode && (
+                <Icon
+                  src={cheekySerious}
+                  className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                />
+              )}
             </>
           }
         />
@@ -126,10 +132,16 @@ const BuildTabular = (props: DataProps): any => {
             center={
               <>
                 <Icon
-                  src={errorIconToUse}
+                  src={errorIcon}
                   className={`${infoRowModule.icon} ${infoRowModule.link}`}
                 />
                 {`${(w.lodIsHeavier ? LODHeavier : LODIdentical).replace("LOD", `LOD${w.groupIndex}`)}`}
+                {props.options.CheekyMode && (
+                  <Icon
+                    src={cheekySerious}
+                    className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                  />
+                )}
               </>
             }
           />
@@ -194,10 +206,16 @@ const BuildLonger = (props: DataProps): any => {
           center={
             <>
               <Icon
-                src={errorIconToUse}
+                src={errorIcon}
                 className={`${infoRowModule.icon} ${infoRowModule.link}`}
               />
               {AllLODsIdentical}
+              {props.options.CheekyMode && (
+                <Icon
+                  src={cheekySerious}
+                  className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                />
+              )}
             </>
           }
         />
@@ -263,7 +281,7 @@ const BuildLonger = (props: DataProps): any => {
                             <Tooltip tooltip={MinimalLODReduction}>
                               <img
                                 className={infoRowModule.icon}
-                                src={warningIconToUse}
+                                src={warningIcon}
                               />
                             </Tooltip>
                           )}
@@ -316,10 +334,16 @@ const BuildLonger = (props: DataProps): any => {
                 center={
                   <>
                     <Icon
-                      src={warningIconToUse}
+                      src={warningIcon}
                       className={`${infoRowModule.icon} ${infoRowModule.link}`}
                     />
                     {HighTrisDensity}
+                    {props.options.CheekyMode && (
+                      <Icon
+                        src={cheekyEyes}
+                        className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                      />
+                    )}
                   </>
                 }
               />
@@ -330,10 +354,16 @@ const BuildLonger = (props: DataProps): any => {
                 center={
                   <>
                     <Icon
-                      src={warningIconToUse}
+                      src={warningIcon}
                       className={`${infoRowModule.icon} ${infoRowModule.link}`}
                     />
                     {ComplexSmallMesh}
+                    {props.options.CheekyMode && (
+                      <Icon
+                        src={cheekyEyes}
+                        className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                      />
+                    )}
                   </>
                 }
               />
@@ -344,10 +374,16 @@ const BuildLonger = (props: DataProps): any => {
                 center={
                   <>
                     <Icon
-                      src={errorIconToUse}
+                      src={errorIcon}
                       className={`${infoRowModule.icon} ${infoRowModule.link}`}
                     />
                     {LODHeavier}
+                    {props.options.CheekyMode && (
+                      <Icon
+                        src={cheekySerious}
+                        className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                      />
+                    )}
                   </>
                 }
               />
@@ -358,10 +394,16 @@ const BuildLonger = (props: DataProps): any => {
                 center={
                   <>
                     <Icon
-                      src={errorIconToUse}
+                      src={errorIcon}
                       className={`${infoRowModule.icon} ${infoRowModule.link}`}
                     />
                     {LODIdentical}
+                    {props.options.CheekyMode && (
+                      <Icon
+                        src={cheekySerious}
+                        className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                      />
+                    )}
                   </>
                 }
               />
@@ -408,16 +450,6 @@ export const SIP_MSV = (componentList: any): any => {
     LODIdentical = FindTranslation("LODIdentical");
     AllLODsIdentical = FindTranslation("AllLODsIdentical");
 
-    warningIconToUse = warningIcon;
-    if (props.options.CheekyMode) {
-      warningIconToUse = "assetdb://global/ef193229fbf684ef095c2b867dcdd100";
-    }
-
-    errorIconToUse = errorIcon;
-    if (props.options.CheekyMode) {
-      errorIconToUse = "assetdb://global/0c68b3c93afc322058378d412fb1d907";
-    }
-
     return (
       <PanelFoldout
         key={`msv-main`}
@@ -444,9 +476,6 @@ export const SIP_MSV = (componentList: any): any => {
 
           const smallAsset: boolean =
             stat.MeshStatData[0].Volume <= props.options.VolumeThreshold;
-          console.log(stat.MeshStatData[0].Volume);
-          console.log(props.options.VolumeThreshold);
-          console.log(smallAsset);
 
           const heavyTris: boolean = stat.MeshStatData[0].TrisCount > 100_000;
 
@@ -471,12 +500,18 @@ export const SIP_MSV = (componentList: any): any => {
                     center={
                       <>
                         <Icon
-                          src={errorIconToUse}
+                          src={errorIcon}
                           className={`${infoRowModule.icon} ${infoRowModule.link}`}
                         />
                         {props.options.CheekyMode
                           ? HeavyMeshNoLODCheeky
                           : HeavyMeshNoLOD}
+                        {props.options.CheekyMode && (
+                          <Icon
+                            src={cheekySerious}
+                            className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                          />
+                        )}
                       </>
                     }
                   />
@@ -486,10 +521,16 @@ export const SIP_MSV = (componentList: any): any => {
                     center={
                       <>
                         <Icon
-                          src={warningIconToUse}
+                          src={warningIcon}
                           className={`${infoRowModule.icon} ${infoRowModule.link}`}
                         />
                         {NoLOD}
+                        {props.options.CheekyMode && (
+                          <Icon
+                            src={cheekyEyes}
+                            className={`${infoRowModule.icon} ${infoRowModule.link}`}
+                          />
+                        )}
                       </>
                     }
                   />

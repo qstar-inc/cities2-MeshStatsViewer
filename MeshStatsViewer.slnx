@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="../StarQ.Shared/StarQ.Shared.shproj" />
   <Project Path="MeshStatsViewer.csproj" />
+  <Project Path="../StarQ.Shared/StarQ.Shared.shproj" />
 </Solution>

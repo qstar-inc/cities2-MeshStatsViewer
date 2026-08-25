@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Colossal.Entities;
-using Colossal.PSI.Environment;
 using Colossal.UI.Binding;
 using Game;
 using Game.Prefabs;

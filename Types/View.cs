@@ -1,7 +1,4 @@
-﻿using Colossal.Json;
-using Game.Settings;
-
-namespace MeshStatsViewer.Types
+﻿namespace MeshStatsViewer.Types
 {
     public enum View
     {

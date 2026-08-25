@@ -8,9 +8,9 @@ View information about asset meshes in-game.
 Ever wanted to check whether a 3D asset is poorly optimized, missing LODs or just standing there making your game cry?
 With this mod, you can do at least two of those things.
 
-The data is viewable when selecting an asset in-game, on the vanilla Selected Info Panel's Customization tab.
-
-Includes option for customizable toleration of LOD tris and volumes so that you can control exactly what should be considered "heavy" for you.
+- The data is viewable when selecting an asset in-game, on the vanilla Selected Info Panel's Customization tab.
+- Includes option for customizable toleration of LOD tris and volumes so that you can control exactly what should be considered "heavy" for you.
+- By default, data view is disabled for vanilla assets but can be enabled from the Options menu.
 
 Originally created at the request of MayorCheeks.</LongDescription>
   <Thumbnail Value="Properties/Thumbnail.png" />
@@ -18,19 +18,19 @@ Originally created at the request of MayorCheeks.</LongDescription>
   <Screenshot Value="Properties/Screenshot02.png" />
   <Screenshot Value="Properties/Screenshot03.png" />
   <Screenshot Value="Properties/Screenshot04.png" />
+  <Screenshot Value="Properties/Screenshot05.png" />
+  <Screenshot Value="Properties/Screenshot06.png" />
   <Tag Value="Code Mod" />
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/starq-mods-assets-projects-megathread.1930389/" />
-  <ModVersion Value="0.9.3" />
+  <ModVersion Value="1.0.0" />
   <GameVersion Value="1.6.0*" />
   <Dependency Id="" />
   <RequiredDLC Value="" />
-  <ChangeLog>- Added "Enable Vanilla" option (don't show data for vanilla items).
-- Added few new warnings.
-- Warnings are now shown above the data.
-- Added CheekySerious emoji for Cheeky Mode.</ChangeLog>
+  <ChangeLog>- Public release.
+- Warnings with Cheeky mode enabled now shows the emojis on the right side of the text.</ChangeLog>
   <ExternalLink Type="github" Url="https://github.com/qstar-inc/cities2-MeshStatsViewer" />
   <ExternalLink Type="discord" Url="https://discord.gg/U2PSjUzUuF" />
   <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/starq" />
   <ExternalLink Type="crowdin" Url="https://crowdin.com/project/starq-cities2" />
-  <AccessLevel Value="Unlisted" />
+  <AccessLevel Value="Public" />
 </Publish>

@@ -1,4 +1,2 @@
-- Added "Enable Vanilla" option (don't show data for vanilla items).
-- Added few new warnings.
-- Warnings are now shown above the data.
-- Added CheekySerious emoji for Cheeky Mode.
+- Public release.
+- Warnings with Cheeky mode enabled now shows the emojis on the right side of the text.
