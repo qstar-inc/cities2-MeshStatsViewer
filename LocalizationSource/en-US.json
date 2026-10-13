@@ -4,6 +4,9 @@
   "TrisCountText": "Tris Count",
   "TrisDensityText": "Tris Density",
   "TrisReductionText": "Tris Reduction (%)",
+  "WidthText": "Width (m)",
+  "HeightText": "Height (m)",
+  "DepthText": "Depth (m)",
   "VolumeText": "Volume (m³)",
   "SurfaceAreaTooltip": "Total area of all mesh surfaces.",
   "VertexCountTooltip": "Number of vertices used by the mesh.",
@@ -33,9 +36,17 @@
   "Option.TrisThreshold.Desc": "Set the tris threshold used to determine whether a mesh is high-density or requires LODs. (Default 5,000)",
   "Option.VolumeThreshold.Label": "Volume Threshold",
   "Option.VolumeThreshold.Desc": "Set the volume threshold used to determine whether a mesh is considered small. (Default 1m³)",
+  "Option.ShowWHD.Label": "Show Width, Height, Depth",
+  "Option.ShowWHD.Desc": "Show the width, height and depth of the mesh.",
   "Option.CheekyMode.Label": "Cheeky Mode",
   "Option.CheekyMode.Desc": "Use various emoji and alternate texts for the warning messages.",
   "OptionsEnum.View.Tabular": "Tabular",
   "OptionsEnum.View.Detailed": "Detailed",
-  "OptionsEnum.View.Simplified": "Simplified"
+  "OptionsEnum.View.Simplified": "Simplified",
+  "Option.AssetSourceSelection.Label": "Asset Source",
+  "Option.AssetSourceSelection.Desc": "Select which asset source should be exported.",
+  "Option.ExportFormatSelection.Label": "Export Format",
+  "Option.ExportFormatSelection.Desc": "Select which export format should be used for exporting.\nCSV is a combo file for all subscribed assets. It is not available for Local assets.",
+  "Option.CreateReport.Label": "Create Mesh Reports",
+  "Option.CreateReport.Desc": "Create mesh reports that saves in ModsData folder."
 }

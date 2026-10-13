@@ -14,6 +14,19 @@
         public int TrisCount { get; set; } = 0;
         public float TrisReduction { get; set; } = 0;
         public float TrisDensity { get; set; } = 0;
+        public float Depth { get; set; } = 0;
+        public float Width { get; set; } = 0;
+        public float Height { get; set; } = 0;
         public float Volume { get; set; } = 0;
+    }
+
+    public sealed class MeshStatExport
+    {
+        public float SurfaceArea;
+        public int VertexCount;
+        public int TrisCount;
+        public float TrisReduction;
+        public float TrisDensity;
+        public float Volume;
     }
 }

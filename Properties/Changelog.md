@@ -1,2 +1,3 @@
-- Public release.
-- Warnings with Cheeky mode enabled now shows the emojis on the right side of the text.
+- Editor Support: Selecting any Render Prefab or any prefab with mesh will show the Mesh Stats panel under the Workspace section.
+- New option to export mesh stats report.
+- New stat option for width, height and depth of the Render Prefab. This option is off by default.

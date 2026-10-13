@@ -55,37 +55,17 @@ namespace MeshStatsViewer.Extensions
 
             writer.PropertyName(nameof(value.SurfaceArea));
             writer.Write(value.SurfaceArea);
+            writer.PropertyName(nameof(value.Width));
+            writer.Write(value.Width);
+
+            writer.PropertyName(nameof(value.Height));
+            writer.Write(value.Height);
+
+            writer.PropertyName(nameof(value.Depth));
+            writer.Write(value.Depth);
 
             writer.PropertyName(nameof(value.Volume));
             writer.Write(value.Volume);
-
-            writer.TypeEnd();
-        }
-    }
-
-    public static class OptionsWriter
-    {
-        public static void Write(this IJsonWriter writer, Options value)
-        {
-            writer.TypeBegin(value.GetType().FullName);
-
-            writer.PropertyName(nameof(value.ViewChooser));
-            writer.Write((int)value.ViewChooser);
-
-            writer.PropertyName(nameof(value.LOD1Threshold));
-            writer.Write(value.LOD1Threshold);
-
-            writer.PropertyName(nameof(value.LOD2Threshold));
-            writer.Write(value.LOD2Threshold);
-
-            writer.PropertyName(nameof(value.TrisThreshold));
-            writer.Write(value.TrisThreshold);
-
-            writer.PropertyName(nameof(value.VolumeThreshold));
-            writer.Write(value.VolumeThreshold);
-
-            writer.PropertyName(nameof(value.CheekyMode));
-            writer.Write(value.CheekyMode);
 
             writer.TypeEnd();
         }

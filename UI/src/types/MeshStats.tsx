@@ -10,5 +10,8 @@ export interface MeshStatData {
   TrisReduction: number;
   TrisDensity: number;
   SurfaceArea: number;
+  Width: number;
+  Height: number;
+  Depth: number;
   Volume: number;
 }

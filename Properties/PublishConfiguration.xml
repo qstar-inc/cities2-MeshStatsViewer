@@ -8,26 +8,39 @@ View information about asset meshes in-game.
 Ever wanted to check whether a 3D asset is poorly optimized, missing LODs or just standing there making your game cry?
 With this mod, you can do at least two of those things.
 
-- The data is viewable when selecting an asset in-game, on the vanilla Selected Info Panel's Customization tab.
+- View the number of tris, vertices, volume of any 3D assets.
+- In game, the data is viewable when selecting an asset with mesh, on the vanilla Selected Info Panel's Customization tab.
+- In editor, the data is viewable when selecting any asset with mesh or selecting a Render Prefab on the Asset Browser, on the vanilla Selected Info Panel's Customization tab.
 - Includes option for customizable toleration of LOD tris and volumes so that you can control exactly what should be considered "heavy" for you.
+- Multiple views, options to show optional items.
 - By default, data view is disabled for vanilla assets but can be enabled from the Options menu.
+- Export mesh report for local assets or subscribed assets in three formats (JSON, TXT, CSV). JSON and TXT export creates one file per mod or ImportedData folder. CSV export is only available for subscribed assets and creates one CSV including all current subscriptions.
 
-Originally created at the request of MayorCheeks.</LongDescription>
-  <Thumbnail Value="Properties/Thumbnail.png" />
-  <Screenshot Value="Properties/Screenshot01.png" />
-  <Screenshot Value="Properties/Screenshot02.png" />
-  <Screenshot Value="Properties/Screenshot03.png" />
-  <Screenshot Value="Properties/Screenshot04.png" />
-  <Screenshot Value="Properties/Screenshot05.png" />
-  <Screenshot Value="Properties/Screenshot06.png" />
+Originally created at the request of MayorCheeks.
+
+## FAQ
+### Why are the tri counts shown in Blender is different from the one shown in the mod/game?
+There's two scenarios where the tri count can vary from what it is in the Blender models.
+1. Your model has glass/grass/window submeshes. When an asset is imported in-game, all submesh geometry is merged with the main geometry which is what the game/mod reports on.
+1. Your model has n-gons which are auto triangulated when exported, thus you don't see the final tris count.</LongDescription>
+  <Thumbnail Value="Properties/Thumbnail.jpg" />
+  <Screenshot Value="Properties/Screenshot01.jpg" />
+  <Screenshot Value="Properties/Screenshot02.jpg" />
+  <Screenshot Value="Properties/Screenshot03.jpg" />
+  <Screenshot Value="Properties/Screenshot04.jpg" />
+  <Screenshot Value="Properties/Screenshot05.jpg" />
+  <Screenshot Value="Properties/Screenshot06.jpg" />
+  <Screenshot Value="Properties/Screenshot07.jpg" />
+  <Screenshot Value="Properties/Screenshot08.jpg" />
   <Tag Value="Code Mod" />
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/starq-mods-assets-projects-megathread.1930389/" />
-  <ModVersion Value="1.0.0" />
-  <GameVersion Value="1.6.0*" />
+  <ModVersion Value="1.1.0" />
+  <GameVersion Value="1.6.2*" />
   <Dependency Id="" />
   <RequiredDLC Value="" />
-  <ChangeLog>- Public release.
-- Warnings with Cheeky mode enabled now shows the emojis on the right side of the text.</ChangeLog>
+  <ChangeLog>- Editor Support: Selecting any Render Prefab or any prefab with mesh will show the Mesh Stats panel under the Workspace section.
+- New option to export mesh stats report.
+- New stat option for width, height and depth of the Render Prefab. This option is off by default.</ChangeLog>
   <ExternalLink Type="github" Url="https://github.com/qstar-inc/cities2-MeshStatsViewer" />
   <ExternalLink Type="discord" Url="https://discord.gg/U2PSjUzUuF" />
   <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/starq" />

@@ -1,7 +1,13 @@
-﻿using Game.Modding;
+﻿using System;
+using System.Linq;
+using Colossal.Json;
+using Game.Modding;
 using Game.Settings;
 using Game.UI;
+using Game.UI.Widgets;
+using MeshStatsViewer.Systems;
 using MeshStatsViewer.Types;
+using StarQ.Shared.Extensions;
 using StarQ.Shared.Generators;
 
 namespace MeshStatsViewer
@@ -17,8 +23,13 @@ namespace MeshStatsViewer
             LOD2Threshold = OptionsDefaults.DefaultLOD2Threshold;
             TrisThreshold = OptionsDefaults.DefaultTrisThreshold;
             VolumeThreshold = OptionsDefaults.DefaultVolumeThreshold;
+            ShowWHD = OptionsDefaults.DefaultShowWHD;
             CheekyMode = OptionsDefaults.DefaultCheekyMode;
+            AssetSourceSelection = AssetSource.Subscribed;
+            ExportFormatSelection = "TXT";
         }
+
+        public const string ReportGroup = "ReportGroup";
 
         [SettingsUISection(GeneralTab, GeneralGroup)]
         public bool EnableVanilla { get; set; } = false;
@@ -43,6 +54,42 @@ namespace MeshStatsViewer
         public int VolumeThreshold { get; set; } = 1;
 
         [SettingsUISection(GeneralTab, GeneralGroup)]
+        public bool ShowWHD { get; set; } = false;
+
+        [SettingsUISection(GeneralTab, GeneralGroup)]
         public bool CheekyMode { get; set; } = false;
+
+        [SettingsUISection(GeneralTab, ReportGroup)]
+        public AssetSource AssetSourceSelection { get; set; } = AssetSource.Subscribed;
+
+        [SettingsUISection(GeneralTab, ReportGroup)]
+        [SettingsUIDropdown(typeof(Setting), nameof(GetStringDropdownItems))]
+        public string ExportFormatSelection { get; set; } = "TXT";
+
+        public DropdownItem<string>[] GetStringDropdownItems()
+        {
+            return Enum.GetValues(typeof(ExportFormat))
+                .Cast<ExportFormat>()
+                .Select(item => new DropdownItem<string>
+                {
+                    value = item.ToString(),
+                    displayName = item.ToString(),
+                })
+                .ToArray();
+        }
+
+        [Exclude]
+        [SettingsUIHidden]
+        public bool CreateReportDisabled =>
+            AssetSourceSelection == AssetSource.Local
+            && ExportFormatSelection == Types.ExportFormat.CSV.ToString();
+
+        [SettingsUIButton]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(CreateReportDisabled))]
+        [SettingsUISection(GeneralTab, ReportGroup)]
+        public bool CreateReport
+        {
+            set { WorldHelper.GetSystem<ReportSystem>().GetAllRenderPrefabData(); }
+        }
     }
 }
