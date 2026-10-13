@@ -23,7 +23,7 @@ Originally created at the request of MayorCheeks.
 There's two scenarios where the tri count can vary from what it is in the Blender models.
 1. Your model has glass/grass/window submeshes. When an asset is imported in-game, all submesh geometry is merged with the main geometry which is what the game/mod reports on.
 1. Your model has n-gons which are auto triangulated when exported, thus you don't see the final tris count.</LongDescription>
-  <Thumbnail Value="Properties/Thumbnail.jpg" />
+  <Thumbnail Value="Properties/Thumbnail.png" />
   <Screenshot Value="Properties/Screenshot01.jpg" />
   <Screenshot Value="Properties/Screenshot02.jpg" />
   <Screenshot Value="Properties/Screenshot03.jpg" />
@@ -34,13 +34,11 @@ There's two scenarios where the tri count can vary from what it is in the Blende
   <Screenshot Value="Properties/Screenshot08.jpg" />
   <Tag Value="Code Mod" />
   <ForumLink Value="https://forum.paradoxplaza.com/forum/threads/starq-mods-assets-projects-megathread.1930389/" />
-  <ModVersion Value="1.1.0" />
+  <ModVersion Value="1.1.1" />
   <GameVersion Value="1.6.2*" />
   <Dependency Id="" />
   <RequiredDLC Value="" />
-  <ChangeLog>- Editor Support: Selecting any Render Prefab or any prefab with mesh will show the Mesh Stats panel under the Workspace section.
-- New option to export mesh stats report.
-- New stat option for width, height and depth of the Render Prefab. This option is off by default.</ChangeLog>
+  <ChangeLog>- Minor bug hotfix.</ChangeLog>
   <ExternalLink Type="github" Url="https://github.com/qstar-inc/cities2-MeshStatsViewer" />
   <ExternalLink Type="discord" Url="https://discord.gg/U2PSjUzUuF" />
   <ExternalLink Type="buymeacoffee" Url="https://buymeacoffee.com/starq" />

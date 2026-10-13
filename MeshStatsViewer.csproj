@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>MeshStatsViewer</AssemblyName>
     <AssemblyTitle>Mesh Stats Viewer</AssemblyTitle>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
   <!--Imports must be after PropertyGroup block-->
   <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.props" />

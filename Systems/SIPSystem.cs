@@ -3,7 +3,6 @@ using Colossal.Entities;
 using Colossal.UI.Binding;
 using Game;
 using Game.Prefabs;
-using MeshStatsViewer.Extensions;
 using MeshStatsViewer.Types;
 using StarQ.Shared.Extensions;
 using StarQ.Shared.Extensions.UI;
@@ -57,10 +56,10 @@ namespace MeshStatsViewer.Systems
             writer.Write(hasMesh);
 
             writer.PropertyName("meshStatsInfo");
-            MeshStatsWriter.Write(writer, meshStatsInfo);
+            writer.Write(meshStatsInfo);
 
             writer.PropertyName("meshViewerOptions");
-            MeshViewerOptionsWriter.Write(writer, OptionsDefaults.GetCurrent());
+            writer.Write(OptionsDefaults.GetCurrent());
         }
 
         protected override void Reset()
